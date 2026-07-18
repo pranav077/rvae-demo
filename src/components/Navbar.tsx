@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Search, Bell, Globe, User, LogOut, Calendar, Shield, Music, MapPin, Sparkles, Gift } from "lucide-react";
+import { Search, Bell, Globe, User, LogOut, Calendar, Shield, Music, MapPin, Sparkles, Gift, MessageSquare } from "lucide-react";
 import { EVENTS, ARTISTS, VENUES } from "@/data/mockData";
 import { showSuccess } from "@/utils/toast";
 
@@ -101,6 +101,7 @@ export const Navbar = () => {
           <Link to="/artists" className="text-sm font-medium text-gray-300 hover:text-pink-400 transition-colors">Artists</Link>
           <Link to="/rewards" className="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors">Rewards</Link>
           <Link to="/rave-finder" className="text-sm font-medium text-gray-300 hover:text-cyan-400 transition-colors">Rave Finder</Link>
+          <Link to="/community" className="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors">Community</Link>
           <Link to="/news" className="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors">News</Link>
         </div>
 
