@@ -1,11 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Music, Globe, Instagram, Award, Disc, Users } from "lucide-react";
 import { ARTISTS } from "@/data/mockData";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
 const Artists = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const artistId = searchParams.get("id");
+  
   const [selectedArtist, setSelectedArtist] = useState(ARTISTS[0]);
+
+  useEffect(() => {
+    if (artistId) {
+      const artist = ARTISTS.find((a) => a.id === artistId);
+      if (artist) {
+        setSelectedArtist(artist);
+      }
+    }
+  }, [artistId]);
+
+  const handleArtistSelect = (artist: typeof ARTISTS[0]) => {
+    setSelectedArtist(artist);
+    setSearchParams({ id: artist.id });
+  };
 
   return (
     <div className="min-h-screen bg-black text-white font-sans">
@@ -26,7 +44,7 @@ const Artists = () => {
             {ARTISTS.map((art) => (
               <button
                 key={art.id}
-                onClick={() => setSelectedArtist(art)}
+                onClick={() => handleArtistSelect(art)}
                 className={`flex w-full items-center space-x-4 rounded-2xl border p-4 text-left transition-all ${
                   selectedArtist.id === art.id
                     ? "border-pink-500 bg-pink-500/10 shadow-[0_0_20px_rgba(236,72,153,0.15)]"
@@ -59,9 +77,9 @@ const Artists = () => {
                 <span className="flex items-center"><Users className="mr-1 h-4 w-4 text-cyan-400" /> {selectedArtist.followers.toLocaleString()} Followers</span>
               </div>
               <div className="flex justify-center sm:justify-start space-x-3">
-                <a href={selectedArtist.spotifyUrl} className="text-xs font-bold text-green-400 hover:underline">Spotify</a>
-                <a href={selectedArtist.soundcloudUrl} className="text-xs font-bold text-orange-400 hover:underline">SoundCloud</a>
-                <a href={selectedArtist.instagramUrl} className="text-xs font-bold text-pink-400 hover:underline">Instagram</a>
+                <a href={selectedArtist.spotifyUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-green-400 hover:underline">Spotify</a>
+                <a href={selectedArtist.soundcloudUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-orange-400 hover:underline">SoundCloud</a>
+                <a href={selectedArtist.instagramUrl} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-pink-400 hover:underline">Instagram</a>
               </div>
             </div>
           </div>
@@ -92,7 +110,7 @@ const Artists = () => {
               {selectedArtist.discography.map((disc, i) => (
                 <div key={i} className="flex items-center justify-between rounded-xl border border-white/5 bg-zinc-900/10 p-3">
                   <div className="flex items-center space-x-3">
-                    <Disc className="h-5 w-5 text-cyan-400" />
+                    <Music className="h-5 w-5 text-cyan-400" />
                     <div>
                       <span className="block text-sm font-bold text-white">{disc.title}</span>
                       <span className="text-[10px] text-gray-400 uppercase tracking-wider">{disc.type}</span>
