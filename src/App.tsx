@@ -12,6 +12,7 @@ import News from "./pages/News";
 import Dashboard from "./pages/Dashboard";
 import Cities from "./pages/Cities";
 import Checkout from "./pages/Checkout";
+import Rewards from "./pages/Rewards";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/cities" element={<Cities />} />
           <Route path="/checkout/:slug" element={<Checkout />} />
+          <Route path="/rewards" element={<Rewards />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

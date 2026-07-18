@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Search, Bell, Globe, User, LogOut, Calendar, Shield, Music, MapPin, Sparkles } from "lucide-react";
+import { Search, Bell, Globe, User, LogOut, Calendar, Shield, Music, MapPin, Sparkles, Gift } from "lucide-react";
 import { EVENTS, ARTISTS, VENUES } from "@/data/mockData";
 import { showSuccess } from "@/utils/toast";
 
@@ -99,6 +99,7 @@ export const Navbar = () => {
           <Link to="/venues" className="text-sm font-medium text-gray-300 hover:text-cyan-400 transition-colors">Venues</Link>
           <Link to="/cities" className="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors">Cities</Link>
           <Link to="/artists" className="text-sm font-medium text-gray-300 hover:text-pink-400 transition-colors">Artists</Link>
+          <Link to="/rewards" className="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors">Rewards</Link>
           <Link to="/news" className="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors">News</Link>
         </div>
 
@@ -227,6 +228,14 @@ export const Navbar = () => {
                   >
                     <User className="h-4 w-4 text-purple-400" />
                     <span>My Dashboard</span>
+                  </Link>
+                  <Link
+                    to="/rewards"
+                    onClick={() => setShowUserMenu(false)}
+                    className="flex w-full items-center space-x-2.5 rounded-xl px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
+                  >
+                    <Gift className="h-4 w-4 text-pink-400" />
+                    <span>Rewards Shop</span>
                   </Link>
                   <Link
                     to="/dashboard?tab=organizer"
