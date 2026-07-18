@@ -100,6 +100,7 @@ export const Navbar = () => {
           <Link to="/cities" className="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors">Cities</Link>
           <Link to="/artists" className="text-sm font-medium text-gray-300 hover:text-pink-400 transition-colors">Artists</Link>
           <Link to="/rewards" className="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors">Rewards</Link>
+          <Link to="/rave-finder" className="text-sm font-medium text-gray-300 hover:text-cyan-400 transition-colors">Rave Finder</Link>
           <Link to="/news" className="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors">News</Link>
         </div>
 

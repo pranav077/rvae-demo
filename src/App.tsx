@@ -13,6 +13,7 @@ import Dashboard from "./pages/Dashboard";
 import Cities from "./pages/Cities";
 import Checkout from "./pages/Checkout";
 import Rewards from "./pages/Rewards";
+import RaveFinder from "./pages/RaveFinder";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/cities" element={<Cities />} />
           <Route path="/checkout/:slug" element={<Checkout />} />
           <Route path="/rewards" element={<Rewards />} />
+          <Route path="/rave-finder" element={<RaveFinder />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
