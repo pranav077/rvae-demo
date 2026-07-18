@@ -11,6 +11,7 @@ import Artists from "./pages/Artists";
 import News from "./pages/News";
 import Dashboard from "./pages/Dashboard";
 import Cities from "./pages/Cities";
+import Checkout from "./pages/Checkout";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/news" element={<News />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/cities" element={<Cities />} />
+          <Route path="/checkout/:slug" element={<Checkout />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

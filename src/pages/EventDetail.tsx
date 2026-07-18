@@ -234,7 +234,7 @@ const EventDetail = () => {
                 <Share2 className="h-5 w-5" />
               </button>
               <button
-                onClick={() => showSuccess("Redirecting to secure ticket checkout...")}
+                onClick={() => navigate(`/checkout/${event.slug}`)}
                 disabled={event.isSoldOut}
                 className="flex-1 rounded-full bg-gradient-to-r from-purple-600 to-cyan-500 py-3 text-sm font-bold text-white hover:scale-105 transition-all disabled:opacity-50 disabled:hover:scale-100"
               >
