@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Calendar, User, Clock, Heart, Share2, ArrowLeft } from "lucide-react";
 import { NEWS } from "@/data/mockData";
 import { Navbar } from "@/components/Navbar";
@@ -6,8 +7,31 @@ import { Footer } from "@/components/Footer";
 import { showSuccess } from "@/utils/toast";
 
 const News = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const articleId = searchParams.get("id");
+  
   const [selectedArticle, setSelectedArticle] = useState<typeof NEWS[0] | null>(null);
   const [likes, setLikes] = useState<Record<string, number>>({});
+
+  useEffect(() => {
+    if (articleId) {
+      const article = NEWS.find((n) => n.id === articleId);
+      if (article) {
+        setSelectedArticle(article);
+      }
+    } else {
+      setSelectedArticle(null);
+    }
+  }, [articleId]);
+
+  const handleArticleSelect = (article: typeof NEWS[0] | null) => {
+    setSelectedArticle(article);
+    if (article) {
+      setSearchParams({ id: article.id });
+    } else {
+      setSearchParams({});
+    }
+  };
 
   const handleLike = (id: string) => {
     setLikes((prev) => ({
@@ -26,7 +50,7 @@ const News = () => {
           /* Detailed Article View */
           <div className="space-y-8 max-w-3xl mx-auto">
             <button
-              onClick={() => setSelectedArticle(null)}
+              onClick={() => handleArticleSelect(null)}
               className="flex items-center space-x-2 text-sm font-bold text-purple-400 hover:text-purple-300 transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
@@ -99,7 +123,7 @@ const News = () => {
               {NEWS.map((art) => (
                 <div
                   key={art.id}
-                  onClick={() => setSelectedArticle(art)}
+                  onClick={() => handleArticleSelect(art)}
                   className="group cursor-pointer overflow-hidden rounded-3xl border border-white/10 bg-zinc-900/20 transition-all hover:border-purple-500/30"
                 >
                   <div className="relative h-56 overflow-hidden">
